@@ -10,7 +10,7 @@ lines down, press "w" and scroll again!
 
 Idea birthed here: https://github.com/saulpw/visidata/issues/561
 '''
-from visidata import *
+from visidata import option, options, status, Sheet
 
 option(name='scroll_fix_enabled', default=False, helpstr='toggle scroll fix')
 
