@@ -1,6 +1,15 @@
 __author__ = 'Geekscrapy'
 __version__ = '1.0'
-# https://github.com/saulpw/visidata/issues/561
+'''
+Allows the user to fix the position on the page where they would like the
+cursor to "stick". Helps to provide context about surrounding rows when
+near the top and bottom of the page.
+
+Usage: import this .py into .visidatarc, open a sheet, scroll a few
+lines down, press "w" and scroll again!
+
+Idea birthed here: https://github.com/saulpw/visidata/issues/561
+'''
 
 from visidata import *
 
