@@ -1,6 +1,6 @@
 __author__ = 'Geekscrapy'
 __version__ = '1.0'
-'''
+__description__ = '''
 Allows the user to fix the position on the page where they would like the
 cursor to "stick". Helps to provide context about surrounding rows when
 near the top and bottom of the page.
@@ -10,7 +10,6 @@ lines down, press "w" and scroll again!
 
 Idea birthed here: https://github.com/saulpw/visidata/issues/561
 '''
-
 from visidata import *
 
 option(name='scroll_fix_enabled', default=False, helpstr='toggle scroll fix')
