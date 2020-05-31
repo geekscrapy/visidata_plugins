@@ -16,7 +16,6 @@ def toggle_scroll_fix(sheet):
         Sheet.addCommand(None, 'go-down',  'cursorDown(+1)', 'go down')
         Sheet.addCommand(None, 'go-up',    'cursorDown(-1)', 'go up')
 
-
     # Enable scrollfix
     else:
         options.scroll_fix_enabled = True; status('scroll fix enabled')
