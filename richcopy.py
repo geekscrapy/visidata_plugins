@@ -10,13 +10,11 @@ __version__ = '1.0'
 def richCopy(sheet, rows):
   if not rows:
     fail('no %s selected' % sheet.rowtype)
-  vs = copy(sheet)
-  vs.rows = rows
   status('copying rows to clipboard')
   # Copy rows to the system clipboard
   # use tempfile to generate filename and delete file on context exit
   with tempfile.NamedTemporaryFile(suffix='.html') as temp:
-    vd.sync(saveSheets(Path(temp.name), vs))
+    vd.sync(saveSheets(Path(temp.name), sheet))
     p = subprocess.Popen(
       ['textutil -stdin -strip -format html -convert rtf -stdout | pbcopy'],
       stdin=open(temp.name, 'r', encoding=options.encoding),
@@ -26,8 +24,7 @@ def richCopy(sheet, rows):
     p.communicate()
   status('copied %d %s to system clipboard' % (len(rows), sheet.rowtype))
 
-
 if sys.platform == "darwin":
   Sheet.addCommand(None, 'richcopy-selected', 'richCopy(selectedRows)', 'yank (copy) current selected row(s) to system clipboard as rtf data')
 else:
-  status('richcopy currently only supports OSX (requires textutil and pbcopy commands)', priority=3)
+  status('richcopy currently only supports OSX (requires "textutil" and "pbcopy" commands)', priority=3)
