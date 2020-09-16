@@ -96,5 +96,5 @@ def disable_logging(*args, **kwargs):
     vd.oldstatus = None
 
 
-Sheet.addCommand(None, 'logging-enabled', 'enable_logging() if not is_logging_enabled() else warning("already enabled")', helpstr='enable verbose logging, and logging to a file')
-Sheet.addCommand(None, 'logging-disable', 'disable_logging() if is_logging_enabled() else warning("already disabled")', helpstr='disable verbose logging, and logging to a file')
+Sheet.addCommand(None, 'logging-enabled', 'enable_logging() if not is_logging_enabled() else warning("already enabled"); status(f"logging to {options.log_path}", priority=2)', helpstr='enable verbose logging, and logging to a file')
+Sheet.addCommand(None, 'logging-disable', 'disable_logging() if is_logging_enabled() else warning("already disabled"); status(f"logging disabled", priority=2)', helpstr='disable verbose logging, and logging to a file')
