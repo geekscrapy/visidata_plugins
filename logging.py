@@ -1,6 +1,6 @@
 '''
 This plugin allows the user to use 'logging-enable' to start logging the vd.status (warning, debug etc.) to a file (set in options.log_path).
-It can also be used within other plugins with 'logging.enable_logging()'.
+It can also be used within other plugins with 'logging.enable_logging()'. Logs all visidata debug messages if 'vd -g --debug <file>' is used
 '''
 
 __author__ = 'Geekscrapy'
