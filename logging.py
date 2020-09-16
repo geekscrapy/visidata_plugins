@@ -83,12 +83,12 @@ def enable_logging(*args, **kwargs):
 
     logger = logging.getLogger(options.log_logger_root)
 
-    # file logger
+    # file handler
     file_handler = logging.FileHandler(options.log_path)
     file_handler.setFormatter(verbose_fmt)
     logger.addHandler(file_handler)
 
-    # vd.status logger
+    # vd.status handler
     vd_handler = vd_log_handler()
     if options.debug:
         vd_handler.setFormatter(verbose_fmt)
