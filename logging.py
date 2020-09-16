@@ -1,3 +1,11 @@
+'''
+This plugin allows the user to use 'logging-enable' to start logging the vd.status (warning, debug etc.) to a file (set in options.log_path).
+It can also be used within other plugins with 'logging.enable_logging()'.
+'''
+
+__author__ = 'Geekscrapy'
+__version__ = '1.0'
+
 from visidata import *
 import logging, sys
 
@@ -66,6 +74,10 @@ def is_logging_enabled(*args, **kwargs):
 @VisiData.api
 def enable_logging(*args, **kwargs):
 
+    if is_logging_enabled():
+        warning(f'already enabled, logging to {options.log_path}')
+        return
+
     verbose_fmt = logging.Formatter(options.log_verbose_fmt, datefmt=options.log_verbose_datefmt, style='{')
     status_fmt = logging.Formatter(options.log_status_fmt, style='{')
 
@@ -90,11 +102,19 @@ def enable_logging(*args, **kwargs):
     vd.oldstatus = vd.status
     vd.status = logging_status
 
+    status(f'logging to {options.log_path}', priority=2)
+
 @VisiData.api
 def disable_logging(*args, **kwargs):
+
+    if not is_logging_enabled():
+        warning("already disabled")
+        return
+
     vd.status = vd.oldstatus
     vd.oldstatus = None
 
+    status(f'logging disabled', priority=2)
 
-Sheet.addCommand(None, 'logging-enabled', 'enable_logging() if not is_logging_enabled() else warning("already enabled"); status(f"logging to {options.log_path}", priority=2)', helpstr='enable verbose logging, and logging to a file')
-Sheet.addCommand(None, 'logging-disable', 'disable_logging() if is_logging_enabled() else warning("already disabled"); status(f"logging disabled", priority=2)', helpstr='disable verbose logging, and logging to a file')
+Sheet.addCommand(None, 'logging-enable', 'enable_logging()', helpstr='enable verbose logging, and logging to a file')
+Sheet.addCommand(None, 'logging-disable', 'disable_logging()', helpstr='disable verbose logging, and logging to a file')
