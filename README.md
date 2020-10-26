@@ -4,3 +4,4 @@
 - capture_named_col.py - Provides the ability to extract regex from a column to create new columns with names from the regex capture groups
 - sql_selector.py - run sql queries against your "sheet". The sheets' table is named "sheet" in the SQL queries
 - logging.py - allows visidata status(), warning(), debug() etc. to be logged to a file. Timestamps are always placed on the logs sent to the file unless the option format is modified (`options.log_*`). Log is saved to `vd.log` by default
+- agg_stdev.py - creates 3 columns on Freqency sheets providing the 1, 2 and 3 standard deviations and how many values are in them. This allows you to see how many outliers are in each slice.
