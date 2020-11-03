@@ -10,7 +10,7 @@ import statistics
 def within_x_stdev(N, w):
 
   try:
-    abs(N[0])           # Values must be a number (int/float etc.
+    abs(N[0])# Values must be a number (int/float etc.
   except TypeError:     # Values must be a number (int/float etc.)
     return float('NAN')
   except IndexError:    # Value must have at least 1 entry
@@ -26,13 +26,13 @@ def within_x_stdev(N, w):
   lower_bound = N_mean - ( N_stdev * w )
   upper_bound = N_mean + ( N_stdev * w )
 
-  outliers = len(list(filter(lambda n: not(bool(lower_bound < n < upper_bound)), N)))
+  outliers = list(filter(lambda n: not(bool(lower_bound < n < upper_bound)), N))
 
   return outliers or None
 
 @functools.lru_cache(100)
 def _stdev(within, helpstr=''):
-  return aggregators._defaggr(f'{within}_stdev', None, lambda col,rows,within=within: within_x_stdev(sorted(col.getValues(rows)), within), helpstr)
+  return aggregators._defaggr(f'{within}_stdev', vlen, lambda col,rows,within=within: within_x_stdev(sorted(col.getValues(rows)), within), helpstr)
 
 def stdev(stdd, helpstr):
   return [_stdev(within, helpstr) for within in range(1,stdd+1) ]
